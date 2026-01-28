@@ -1,0 +1,52 @@
+{
+  "projects": [
+    {
+      "name": "My-portfolio",
+      "description": "Updated portfolio website",
+      "url": "https://github.com/Vinoothna-01/My-portfolio",
+      "languages": ["HTML", "TypeScript"],
+      "primaryLanguage": "TypeScript",
+      "category": "Web Development"
+    },
+    {
+      "name": "Integrated-Deep-Vision-System",
+      "description": "Deep learning vision system for image analysis and computer vision tasks",
+      "url": "https://github.com/Vinoothna-01/Integrated-Deep-Vision-System",
+      "languages": ["Python", "Jupyter Notebook"],
+      "primaryLanguage": "Python",
+      "category": "Machine Learning"
+    },
+    {
+      "name": "Customer_Churn_Analysis",
+      "description": "Data analysis project for customer churn prediction and analysis",
+      "url": "https://github.com/Vinoothna-01/Customer_Churn_Analysis",
+      "languages": ["Jupyter Notebook"],
+      "primaryLanguage": "Python",
+      "category": "Data Analytics"
+    },
+    {
+      "name": "CS_6045_Project",
+      "description": "Advanced algorithms and computer science project",
+      "url": "https://github.com/Vinoothna-01/CS_6045_Project",
+      "languages": ["Python"],
+      "primaryLanguage": "Python",
+      "category": "Algorithms"
+    },
+    {
+      "name": "CS6041_TOC_Project",
+      "description": "Theory of Computation project with formal language analysis",
+      "url": "https://github.com/Vinoothna-01/CS6041_TOC_Project",
+      "languages": ["Jupyter Notebook"],
+      "primaryLanguage": "Python",
+      "category": "Theory"
+    },
+    {
+      "name": "Advanced_Cryptography_project",
+      "description": "Cryptography and security implementation project",
+      "url": "https://github.com/Vinoothna-01/Advanced_Cryptograhpy_project",
+      "languages": ["Python"],
+      "primaryLanguage": "Python",
+      "category": "Security"
+    }
+  ]
+}

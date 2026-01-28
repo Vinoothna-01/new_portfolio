@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Mail, Phone, Linkedin, Github, ExternalLink, Code2, Database, Palette, BarChart3, BookOpen, Award } from "lucide-react";
+import { Mail, Phone, Linkedin, Github, ExternalLink, Code2, Database, Palette, BarChart3, BookOpen, Award, Star, GitBranch } from "lucide-react";
 import { useEffect, useState } from "react";
 
 /**
@@ -10,8 +10,69 @@ import { useEffect, useState } from "react";
  * Layout: Asymmetric grid with alternating content patterns
  */
 
+interface GitHubProject {
+  name: string;
+  description: string;
+  url: string;
+  languages: string[];
+  primaryLanguage: string;
+  category: string;
+}
+
+const GITHUB_PROJECTS: GitHubProject[] = [
+  {
+    name: "Integrated-Deep-Vision-System",
+    description: "Deep learning vision system for image analysis and computer vision tasks using advanced neural networks",
+    url: "https://github.com/Vinoothna-01/Integrated-Deep-Vision-System",
+    languages: ["Python", "TensorFlow"],
+    primaryLanguage: "Python",
+    category: "Machine Learning"
+  },
+  {
+    name: "Customer_Churn_Analysis",
+    description: "Comprehensive data analysis project for customer churn prediction with visualization dashboards",
+    url: "https://github.com/Vinoothna-01/Customer_Churn_Analysis",
+    languages: ["Python", "Pandas", "Scikit-learn"],
+    primaryLanguage: "Python",
+    category: "Data Analytics"
+  },
+  {
+    name: "Advanced_Cryptography_Project",
+    description: "Implementation of advanced cryptographic algorithms and security protocols",
+    url: "https://github.com/Vinoothna-01/Advanced_Cryptograhpy_project",
+    languages: ["Python"],
+    primaryLanguage: "Python",
+    category: "Security"
+  },
+  {
+    name: "CS_6045_Project",
+    description: "Advanced algorithms and data structures implementation for complex computational problems",
+    url: "https://github.com/Vinoothna-01/CS_6045_Project",
+    languages: ["Python"],
+    primaryLanguage: "Python",
+    category: "Algorithms"
+  },
+  {
+    name: "CS6041_TOC_Project",
+    description: "Theory of Computation project with formal language analysis and automata implementation",
+    url: "https://github.com/Vinoothna-01/CS6041_TOC_Project",
+    languages: ["Python"],
+    primaryLanguage: "Python",
+    category: "Theory"
+  },
+  {
+    name: "My-portfolio",
+    description: "Professional portfolio website built with modern web technologies",
+    url: "https://github.com/Vinoothna-01/My-portfolio",
+    languages: ["HTML", "TypeScript", "React"],
+    primaryLanguage: "TypeScript",
+    category: "Web Development"
+  }
+];
+
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,6 +81,11 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const categories = Array.from(new Set(GITHUB_PROJECTS.map(p => p.category)));
+  const filteredProjects = selectedCategory 
+    ? GITHUB_PROJECTS.filter(p => p.category === selectedCategory)
+    : GITHUB_PROJECTS;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -55,7 +121,7 @@ export default function Home() {
             </div>
             
             <p className="text-lg text-foreground/80 leading-relaxed max-w-lg">
-              Master's student in Computer Science with expertise in data analytics, visualization, and user experience design. Passionate about transforming complex data into actionable insights and building intuitive digital experiences.
+              Master's student in Computer Science with expertise in data analytics, machine learning, and user experience design. Passionate about transforming complex data into actionable insights and building intuitive digital experiences.
             </p>
             
             <div className="flex gap-4 pt-4">
@@ -75,7 +141,7 @@ export default function Home() {
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-accent transition-colors">
                 <Linkedin size={24} />
               </a>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-accent transition-colors">
+              <a href="https://github.com/Vinoothna-01" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-accent transition-colors">
                 <Github size={24} />
               </a>
               <a href="mailto:vinoothnaaadhya@gmail.com" className="text-primary hover:text-accent transition-colors">
@@ -126,7 +192,7 @@ export default function Home() {
                     <Code2 className="text-accent mt-1" size={24} />
                     <div>
                       <h3 className="font-accent text-lg text-primary mb-2">Expertise</h3>
-                      <p className="text-foreground/80">Data Analytics, UX/UI Design, Full-Stack Development</p>
+                      <p className="text-foreground/80">Data Analytics, Machine Learning, UX/UI Design</p>
                     </div>
                   </div>
                 </Card>
@@ -184,112 +250,86 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Projects Section */}
+      {/* GitHub Projects Section */}
       <section id="projects" className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-5xl font-display font-bold text-primary mb-8">Featured Projects</h2>
+          <h2 className="text-5xl font-display font-bold text-primary mb-8">GitHub Projects</h2>
           <div className="h-1 w-20 bg-accent mb-12"></div>
           
-          <div className="space-y-16 max-w-5xl">
-            {/* Socialz Project */}
-            <div className="grid grid-cols-2 gap-12 items-center">
-              <div className="order-2">
-                <div className="relative h-80 rounded-lg overflow-hidden shadow-lg">
-                  <img src="/images/tech-innovation-visual.png" alt="Socialz App" className="w-full h-full object-cover" />
-                </div>
-              </div>
-              <div className="order-1 space-y-4">
-                <p className="text-accent font-accent text-sm uppercase tracking-wide">Mobile Application</p>
-                <h3 className="font-display text-3xl font-bold text-primary">Socialz</h3>
-                <p className="text-lg text-foreground/80">Community-based mobile application focused on engagement, discoverability, and user behavior analysis.</p>
-                <ul className="space-y-2 text-foreground/80">
-                  <li className="flex items-start gap-3">
-                    <span className="text-accent mt-1">→</span>
-                    <span>Designed and built with emphasis on UX research and user interaction patterns</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-accent mt-1">→</span>
-                    <span>Applied content tagging and basic analytics to assess feature effectiveness</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-accent mt-1">→</span>
-                    <span>Founder & Developer - managed full project lifecycle</span>
-                  </li>
-                </ul>
-                <div className="flex flex-wrap gap-2 pt-4">
-                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">UX Design</span>
-                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Mobile Dev</span>
-                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Analytics</span>
-                </div>
-                <a href="#" className="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors pt-4 font-accent">
-                  View Project <ExternalLink size={18} />
-                </a>
-              </div>
-            </div>
+          {/* Category Filter */}
+          <div className="mb-12 flex flex-wrap gap-3">
+            <button
+              onClick={() => setSelectedCategory(null)}
+              className={`px-6 py-2 rounded-full font-accent transition-all ${
+                selectedCategory === null
+                  ? "bg-accent text-accent-foreground"
+                  : "bg-border text-foreground hover:bg-accent/10"
+              }`}
+            >
+              All Projects
+            </button>
+            {categories.map(cat => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-6 py-2 rounded-full font-accent transition-all ${
+                  selectedCategory === cat
+                    ? "bg-accent text-accent-foreground"
+                    : "bg-border text-foreground hover:bg-accent/10"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
 
-            <div className="h-px bg-border"></div>
-
-            {/* TruthLens Project */}
-            <div className="grid grid-cols-2 gap-12 items-center">
-              <div className="relative h-80 rounded-lg overflow-hidden shadow-lg">
-                <img src="/images/data-analytics-visual.png" alt="TruthLens" className="w-full h-full object-cover" />
-              </div>
-              <div className="space-y-4">
-                <p className="text-accent font-accent text-sm uppercase tracking-wide">Data Analysis & Visualization</p>
-                <h3 className="font-display text-3xl font-bold text-primary">TruthLens</h3>
-                <p className="text-lg text-foreground/80">Real vs. Fake News Analysis platform using advanced data visualization and research synthesis.</p>
-                <ul className="space-y-2 text-foreground/80">
-                  <li className="flex items-start gap-3">
-                    <span className="text-accent mt-1">→</span>
-                    <span>Conducted data cleaning and exploratory analysis on news datasets</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-accent mt-1">→</span>
-                    <span>Built visual dashboards to communicate trends to non-technical audiences</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-accent mt-1">→</span>
-                    <span>Emphasized interpretability and insight synthesis</span>
-                  </li>
-                </ul>
-                <div className="flex flex-wrap gap-2 pt-4">
-                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Python</span>
-                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Power BI</span>
-                  <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Data Viz</span>
-                </div>
-                <a href="#" className="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors pt-4 font-accent">
-                  View Project <ExternalLink size={18} />
-                </a>
-              </div>
-            </div>
-
-            <div className="h-px bg-border"></div>
-
-            {/* Code to Give Hackathon */}
-            <div className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-lg p-8 border border-accent/20">
-              <div className="flex items-start gap-4">
-                <Award className="text-accent mt-1" size={32} />
-                <div className="flex-1">
-                  <p className="text-accent font-accent text-sm uppercase tracking-wide">Hackathon</p>
-                  <h3 className="font-display text-2xl font-bold text-primary mt-2">Code to Give Hackathon — Morgan Stanley</h3>
-                  <p className="text-foreground/80 mt-3">Collaborated with cross-functional teams to design technology-driven solutions for social impact organizations.</p>
-                  <ul className="space-y-2 text-foreground/80 mt-3">
-                    <li className="flex items-start gap-3">
-                      <span className="text-accent mt-1">→</span>
-                      <span>Translated problem statements into measurable outcomes</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-accent mt-1">→</span>
-                      <span>Communicated impact through visuals and storytelling</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-accent mt-1">→</span>
-                      <span>Developed leadership and philanthropic learning skills</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+          {/* Projects Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl">
+            {filteredProjects.map((project, index) => (
+              <a
+                key={index}
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group"
+              >
+                <Card className="p-6 h-full hover:shadow-xl transition-all duration-300 hover:border-accent border-2 border-transparent">
+                  <div className="space-y-4">
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <p className="text-accent font-accent text-xs uppercase tracking-wider mb-2">{project.category}</p>
+                        <h3 className="font-display text-xl font-bold text-primary group-hover:text-accent transition-colors">
+                          {project.name.replace(/_/g, " ")}
+                        </h3>
+                      </div>
+                      <GitBranch className="text-accent/50 group-hover:text-accent transition-colors" size={20} />
+                    </div>
+                    
+                    <p className="text-foreground/80 text-sm leading-relaxed">
+                      {project.description}
+                    </p>
+                    
+                    <div className="flex flex-wrap gap-2">
+                      {project.languages.slice(0, 3).map((lang, i) => (
+                        <span key={i} className="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full">
+                          {lang}
+                        </span>
+                      ))}
+                      {project.languages.length > 3 && (
+                        <span className="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full">
+                          +{project.languages.length - 3}
+                        </span>
+                      )}
+                    </div>
+                    
+                    <div className="flex items-center gap-2 text-accent text-sm font-accent pt-2 group-hover:gap-3 transition-all">
+                      View Repository
+                      <ExternalLink size={16} />
+                    </div>
+                  </div>
+                </Card>
+              </a>
+            ))}
           </div>
         </div>
       </section>
@@ -329,7 +369,7 @@ export default function Home() {
                 <li>• Data Visualization</li>
                 <li>• Dashboard Development</li>
                 <li>• Data Interpretation</li>
-                <li>• Big Data Analytics</li>
+                <li>• Machine Learning</li>
               </ul>
             </Card>
 
@@ -415,7 +455,7 @@ export default function Home() {
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
               <Linkedin size={32} />
             </a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
+            <a href="https://github.com/Vinoothna-01" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
               <Github size={32} />
             </a>
           </div>
